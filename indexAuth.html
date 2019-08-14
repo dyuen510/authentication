@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+    <button onclick="googleLogin()">
+        Login with Google
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script>
+                var firebaseConfig = {
+            apiKey: "AIzaSyDKdkoTwVdvMhHmfGeRBgaU2myzVruJ5eQ",
+            authDomain: "todoproject-4ae26.firebaseapp.com",
+            databaseURL: "https://todoproject-4ae26.firebaseio.com",
+            projectId: "todoproject-4ae26",
+            storageBucket: "",
+            messagingSenderId: "1092289165926",
+            appId: "1:1092289165926:web:89fc248fa10f3ee2"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        document.addEventListener('DOMContentLoaded',event=>{
+            const app = firebase.app();
+            console.log(app)
+        })
+        function googleLogin(){
+            const provider = new firebase.auth.GoogleAuthProvider();
+
+            firebase.auth().signInWithPopup(provider)
+
+            .then(result =>{
+                const user = result.user;
+                document.write('Hello ${user.displayName}');
+                console.log(user)
+            })
+            .catch(console.log)
+        }
+        
+    </script>
+</body>
+</html>
